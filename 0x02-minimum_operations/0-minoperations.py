@@ -7,8 +7,13 @@ def minOperations(n):
     """this method calculates the minimum number
     of operations to achieve n 'H' characters"""
     if n == 1:
-        return 1
-    prev_power_2 = 1 << (n.bit_length() - 1) - 1
-    if prev_power_2 == 0:
         return 0
-    return 1 + minOperations(n - prev_power_2)
+
+    operations = float('inf')
+
+    for i in range(1, n // 2 + 1):
+        if n % i == 0:
+            factor_operations = minOperations(i) + n // i
+            operations = min(operations, factor_operations)
+
+    return operations
