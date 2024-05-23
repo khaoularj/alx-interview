@@ -3,9 +3,9 @@
 const request = require('request');
 
 const filmNumber = process.argv[2] + '/';
-const film_URL = 'https://swapi-api.hbtn.io/api/films/';
+const filmUrl = 'https://swapi-api.hbtn.io/api/films/';
 
-request(film_URL + filmNumber, async function (Error, response, bd) {
+request(filmUrl + filmNumber, async function (Error, response, bd) {
   if (Error) {
     console.error(Error);
     return;
@@ -17,15 +17,15 @@ request(film_URL + filmNumber, async function (Error, response, bd) {
   }
 
 
-  let charURL_ls;
+  let charUrlLs;
   try {
-    charURL_ls = JSON.parse(bd).characters;
+    charUrlLs = JSON.parse(bd).characters;
   } catch (parseError) {
     console.error('Error parsing response body:', parseError);
     return;
   }
 
-  for (const charURL of charURL_ls) {
+  for (const charURL of charUrlLs) {
     await new Promise(function (resolve, reject) {
       request(charURL, function (Error, response, bd) {
         if (Error) {
