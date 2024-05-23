@@ -16,7 +16,6 @@ request(filmUrl + filmNumber, async function (Error, response, bd) {
     return;
   }
 
-
   let charUrlLs;
   try {
     charUrlLs = JSON.parse(bd).characters;
